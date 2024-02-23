@@ -16,7 +16,11 @@ interface RegisterServiceResponse {
 export class RegisterService {
   constructor(private usersRepository: UsersRepository) {}
 
-  async handle({ name, email, password }: RegisterServiceProps): Promise<RegisterServiceResponse> {
+  async handle({
+    name,
+    email,
+    password,
+  }: RegisterServiceProps): Promise<RegisterServiceResponse> {
     const userAlreadyExists = await this.usersRepository.findByEmail(email)
 
     if (userAlreadyExists) {
@@ -32,7 +36,7 @@ export class RegisterService {
     })
 
     return {
-      user
+      user,
     }
   }
 }
